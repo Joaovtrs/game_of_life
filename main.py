@@ -1,5 +1,5 @@
-import pygame
 import numpy as np
+import pygame
 from pygame.locals import *
 
 
@@ -23,23 +23,74 @@ def next_generation():
 
     for i in range(gride[0]):
         for j in range(gride[1]):
-            new_generation[i][j] = generation[i][j]
+            neighbours = count_neighbours(i, j)
+
+            if generation[i][j]:
+                if neighbours >= 2 and neighbours <= 3:
+                    new_generation[i][j] = 1
+            else:
+                if neighbours == 3:
+                    new_generation[i][j] = 1
 
     generation = new_generation
 
 
-funcionando = True
+def get_neighbours(x, y):
+    global gride
+    neighbours = []
+    neighbours.append((
+        (x - 1) % gride[0],
+        (y - 1) % gride[1]
+    ))
+    neighbours.append((
+        (x - 1) % gride[0],
+        (y) % gride[1]
+    ))
+    neighbours.append((
+        (x) % gride[0],
+        (y - 1) % gride[1]
+    ))
+    neighbours.append((
+        (x + 1) % gride[0],
+        (y + 1) % gride[1]
+    ))
+    neighbours.append((
+        (x + 1) % gride[0],
+        (y) % gride[1]
+    ))
+    neighbours.append((
+        (x) % gride[0],
+        (y + 1) % gride[1]
+    ))
+    neighbours.append((
+        (x + 1) % gride[0],
+        (y - 1) % gride[1]
+    ))
+    neighbours.append((
+        (x - 1) % gride[0],
+        (y + 1) % gride[1]
+    ))
+    return neighbours
+
+
+def count_neighbours(x, y):
+    global generation
+    return sum(generation[x_i][y_i] for x_i, y_i in get_neighbours(x, y))
+
+
+playing = True
 clock = pygame.time.Clock()
 
 # Colors
 black = (0, 0, 0)
 white = (255, 255, 255)
-gray = (50, 50, 50)
+gray = (20, 20, 20)
 
 # Control variables
+tick = 60
 window_height = 500
 window_length = 700
-gride_size = 20
+gride_size = 10
 gride = (int(window_length / gride_size), int(window_height / gride_size))
 generation = np.random.randint(2, size=gride)
 skin = pygame.Surface((gride_size, gride_size))
@@ -49,12 +100,12 @@ pygame.init()
 screen = pygame.display.set_mode((window_length, window_height))
 pygame.display.set_caption('Game of Life')
 
-while funcionando:
-    clock.tick(60)
+while playing:
+    clock.tick(tick)
 
     for event in pygame.event.get():
         if event.type == QUIT:
-            funcionando = False
+            playing = False
 
         if event.type == KEYDOWN:
             if event.key == 32:

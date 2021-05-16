@@ -95,6 +95,7 @@ gride = (int(window_length / gride_size), int(window_height / gride_size))
 generation = np.random.randint(2, size=gride)
 skin = pygame.Surface((gride_size, gride_size))
 skin.fill(white)
+paused = False
 
 pygame.init()
 screen = pygame.display.set_mode((window_length, window_height))
@@ -111,8 +112,12 @@ while playing:
             if event.key == 32:
                 generation = np.random.randint(2, size=gride)
 
+            if event.key == 112:
+                paused = not paused
+
     draw()
-    next_generation()
+    if not paused:
+        next_generation()
 
     pygame.display.update()
 

@@ -115,6 +115,9 @@ while playing:
             if event.key == 112:
                 paused = not paused
 
+            if event.key == 99:
+                generation = np.zeros(gride)
+
     draw()
     if not paused:
         next_generation()

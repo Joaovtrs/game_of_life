@@ -78,6 +78,13 @@ def count_neighbours(x, y):
     return sum(generation[x_i][y_i] for x_i, y_i in get_neighbours(x, y))
 
 
+def add_cell(abs_x, abs_y):
+    global gride_size, generation
+    x = abs_x // gride_size
+    y = abs_y // gride_size
+    generation[x][y] = 0 if generation[x][y] else 1
+
+
 playing = True
 clock = pygame.time.Clock()
 
@@ -90,7 +97,7 @@ gray = (20, 20, 20)
 tick = 60
 window_height = 500
 window_length = 700
-gride_size = 10
+gride_size = 20
 gride = (int(window_length / gride_size), int(window_height / gride_size))
 generation = np.random.randint(2, size=gride)
 skin = pygame.Surface((gride_size, gride_size))
@@ -107,6 +114,9 @@ while playing:
     for event in pygame.event.get():
         if event.type == QUIT:
             playing = False
+
+        if event.type == pygame.MOUSEBUTTONUP:
+            add_cell(*pygame.mouse.get_pos())
 
         if event.type == KEYDOWN:
             if event.key == 32:

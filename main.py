@@ -6,7 +6,7 @@ from pygame.locals import *
 def draw():
     screen.fill(black)
 
-    for i, colum in enumerate(lifes):
+    for i, colum in enumerate(generation):
         for j, cell in enumerate(colum):
             if cell:
                 screen.blit(skin, (i * gride_size, j * gride_size))
@@ -15,6 +15,17 @@ def draw():
         pygame.draw.line(screen, gray, (x, 0), (x, window_height))
     for y in range(0, window_height, gride_size):
         pygame.draw.line(screen, gray, (0, y), (window_length, y))
+
+
+def next_generation():
+    global generation, gride
+    new_generation = np.zeros(gride)
+
+    for i in range(gride[0]):
+        for j in range(gride[1]):
+            new_generation[i][j] = generation[i][j]
+
+    generation = new_generation
 
 
 funcionando = True
@@ -30,7 +41,7 @@ window_height = 500
 window_length = 700
 gride_size = 20
 gride = (int(window_length / gride_size), int(window_height / gride_size))
-lifes = np.random.randint(2, size=gride)
+generation = np.random.randint(2, size=gride)
 skin = pygame.Surface((gride_size, gride_size))
 skin.fill(white)
 
@@ -44,12 +55,13 @@ while funcionando:
     for event in pygame.event.get():
         if event.type == QUIT:
             funcionando = False
-        
+
         if event.type == KEYDOWN:
             if event.key == 32:
-                lifes = np.random.randint(2, size=gride)
+                generation = np.random.randint(2, size=gride)
 
     draw()
+    next_generation()
 
     pygame.display.update()
 

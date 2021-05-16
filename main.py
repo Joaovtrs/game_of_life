@@ -96,7 +96,7 @@ gray = (20, 20, 20)
 # Control variables
 tick = 60
 window_height = 500
-window_length = 700
+window_length = 900
 gride_size = 20
 gride = (int(window_length / gride_size), int(window_height / gride_size))
 generation = np.random.randint(2, size=gride)
@@ -115,7 +115,7 @@ while playing:
         if event.type == QUIT:
             playing = False
 
-        if event.type == pygame.MOUSEBUTTONUP:
+        if event.type == pygame.MOUSEBUTTONDOWN:
             add_cell(*pygame.mouse.get_pos())
 
         if event.type == KEYDOWN:

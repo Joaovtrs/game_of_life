@@ -1,2 +1,2 @@
-# Game of life
+# Pygame example
  

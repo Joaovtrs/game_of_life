@@ -115,3 +115,6 @@ dmypy.json
 
 # VSCode files
 .vscode/
+
+# Font
+*.ttf

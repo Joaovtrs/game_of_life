@@ -4,6 +4,6 @@ See the Conway's Game of Life reference on [Wikipedia](https://en.wikipedia.org/
 
 ### Commands:
 
-* Space: Randomize
-* P: Pause
-* C: Clear screen
++ Space: Randomize
++ P: Pause
++ C: Clear screen

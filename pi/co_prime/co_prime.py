@@ -34,7 +34,7 @@ def draw(n, fps, t):
     screen.blit(txt2, txt2_rect)
 
     t /= 1000000
-    txt3 = font2.render(f"Total: {t:.1f} milhões", True, white, black)
+    txt3 = font2.render(f"Total: {t:.1f} million pairs", True, white, black)
     txt3_rect = txt3.get_rect()
     txt3_rect.topleft = (10, 40)
     screen.blit(txt3, txt3_rect)

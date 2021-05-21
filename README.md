@@ -1,6 +1,6 @@
 # Pygame example
  
 ### Example:
-+ [Game of life](game_of_life)
++ [Game of life](src/game_of_life)
 + PI
-  + [Co-prime](pi/co_prime)
+  + [Co-prime](src/pi/co_prime)

@@ -1,4 +1,4 @@
-# Co-prime Pi Approximation
+# Square-Circle Pi Approximation
 
 Estimates the PI value with ratio between the areas of the circle and the square.
 

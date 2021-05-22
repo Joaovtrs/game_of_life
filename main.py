@@ -10,7 +10,7 @@ for root, dirs, files in os.walk('src'):
 print('Chose:')
 
 for i in range(len(paths)):
-    print(f'{i}: {paths[i]}')
+    print(f'{i}: {paths[i][4:]}')
 
 path = paths[int(input())]
 sys.path.append(path)

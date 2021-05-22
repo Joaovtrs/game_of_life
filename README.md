@@ -5,3 +5,4 @@
 + PI
   + [Co-prime](src/pi/co_prime)
   + [Square-Circle](src/pi/square_circle)
++ [Sandpiles](src/sandpiles)
